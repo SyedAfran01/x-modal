@@ -18,28 +18,28 @@ function XModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     if (!username || !email || !phone || !dob) {
       alert('Please fill out all fields.');
       return;
     }
-
+  
     if (!email.includes('@')) {
       alert('Invalid email. Please check your email address.');
       return;
     }
-
-    if (phone.length !== 10) {
+  
+    if (!/^\d{10}$/.test(phone)) {
       alert('Invalid phone number. Please enter a 10-digit phone number.');
       return;
     }
-
+  
     const dobDate = new Date(dob);
     if (dobDate > new Date()) {
       alert('Invalid date of birth. Please enter a valid date.');
       return;
     }
-
+  
     setIsOpen(false);
   };
 
