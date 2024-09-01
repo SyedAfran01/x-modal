@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './XModal.module.css'; // Ensure to import your CSS file
+import './XModal.module.css';
 
 function XModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,37 +18,51 @@ function XModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
+    // Check for empty fields
     if (!username || !email || !phone || !dob) {
       alert('Please fill out all fields.');
       return;
     }
-  
+
+    // Email validation
     if (!email.includes('@')) {
       alert('Invalid email. Please check your email address.');
       return;
     }
-  
-    if (!/^\d{10}$/.test(phone)) {
+
+    // Phone number validation
+    if (phone.length !== 10 || isNaN(phone)) {
       alert('Invalid phone number. Please enter a 10-digit phone number.');
       return;
     }
-  
+
+    // Date of Birth validation
     const dobDate = new Date(dob);
     if (dobDate > new Date()) {
       alert('Invalid date of birth. Please enter a valid date.');
       return;
     }
-  
+
+    // Close modal on successful submission
     setIsOpen(false);
+    setUsername('');
+    setEmail('');
+    setPhone('');
+    setDob('');
   };
 
   return (
-    <div>
-      <button onClick={handleOpenModal}>Open Form</button>
+    <div className="container">
+      <h2>User Details Modal</h2>
+      <button className="open-button" onClick={handleOpenModal}>
+        Open Form
+      </button>
+
       {isOpen && (
         <div className="modal" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Fill Details</h3>
             <form onSubmit={handleSubmit}>
               <label>
                 Username:
@@ -59,9 +73,8 @@ function XModal() {
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </label>
-              <br />
               <label>
-                Email:
+                Email Address:
                 <input
                   type="email"
                   id="email"
@@ -69,17 +82,15 @@ function XModal() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
-              <br />
               <label>
                 Phone Number:
                 <input
-                  type="text" // Changed from 'number' to 'text'
+                  type="text"
                   id="phone"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </label>
-              <br />
               <label>
                 Date of Birth:
                 <input
@@ -89,7 +100,6 @@ function XModal() {
                   onChange={(e) => setDob(e.target.value)}
                 />
               </label>
-              <br />
               <button className="submit-button" type="submit">
                 Submit
               </button>

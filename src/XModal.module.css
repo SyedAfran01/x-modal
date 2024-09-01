@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,76 +14,91 @@ body {
   text-align: center;
 }
 
+.container {
+  position: relative;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.open-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.open-button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.modal-content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 15px;
 }
 
 label {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
 }
 
 input[type="text"],
 input[type="email"],
-input[type="number"],
 input[type="date"] {
   width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
   padding: 10px;
+  margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus {
-  border-color: #aaa;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #007BFF;
-  color: #fff;
-}
-
-button:hover {
-  background-color: #0056b3;
+  font-size: 1rem;
 }
 
 .submit-button {
-  background-color: #007BFF;
-  color: #fff;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #218838;
 }
