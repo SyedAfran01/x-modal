@@ -45,7 +45,6 @@ function XModal() {
 
   return (
     <div>
-      <h1>User Details Modal</h1>
       <button onClick={handleOpenModal}>Open Form</button>
       {isOpen && (
         <div className="modal" onClick={handleCloseModal}>
