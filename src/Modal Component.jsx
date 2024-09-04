@@ -1,141 +1,141 @@
-import React, { useState, useEffect } from 'react';
-import './XModal.module.css';
+// import React, { useState, useEffect } from 'react';
+// import './XModal.module.css';
 
-function Modal({ toggleModal }) {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [dob, setDob] = useState('');
+// function Modal({ toggleModal }) {
+//   const [username, setUsername] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [phone, setPhone] = useState('');
+//   const [dob, setDob] = useState('');
 
-  // Function to handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
+//   // Function to handle form submission
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
 
-    // Validation checks
-    if (!username) {
-      alert('Please fill out the Username field.');
-      return;
-    }
+//     // Validation checks
+//     if (!username) {
+//       alert('Please fill out the Username field.');
+//       return;
+//     }
 
-    if (!email.includes('@') || !email.includes('.') || email.length < 5) {
-      alert('Invalid email');
-      return;
-    }
+//     if (!email.includes('@') || !email.includes('.') || email.length < 5) {
+//       alert('Invalid email');
+//       return;
+//     }
 
-    // Phone number validation: Ensure it contains only digits and is exactly 10 characters long
-    if (!/^\d{10}$/.test(phone)) {
-      alert('Invalid phone number');
-      return;
-    }
+//     // Phone number validation: Ensure it contains only digits and is exactly 10 characters long
+//     if (!/^\d{10}$/.test(phone)) {
+//       alert('Invalid phone number');
+//       return;
+//     }
 
-    // Date of birth validation: Ensure it is not a future date and is not empty
-    if (!dob || !isValidDate(dob)) {
-      alert('Invalid date of birth');
-      return;
-    }
+//     // Date of birth validation: Ensure it is not a future date and is not empty
+//     if (!dob || !isValidDate(dob)) {
+//       alert('Invalid date of birth');
+//       return;
+//     }
 
-    // If all validations pass, close the modal
-    toggleModal();
-  };
+//     // If all validations pass, close the modal
+//     toggleModal();
+//   };
 
-  // Function to close the modal if clicked outside
-  const handleClickOutside = (event) => {
-    if (event.target.className.includes('modal')) {
-      toggleModal();
-    }
-  };
+//   // Function to close the modal if clicked outside
+//   const handleClickOutside = (event) => {
+//     if (event.target.className.includes('modal')) {
+//       toggleModal();
+//     }
+//   };
 
-  // Attach event listener to detect clicks outside the modal content
-  useEffect(() => {
-    window.addEventListener('click', handleClickOutside);
-    return () => {
-      window.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+//   // Attach event listener to detect clicks outside the modal content
+//   useEffect(() => {
+//     window.addEventListener('click', handleClickOutside);
+//     return () => {
+//       window.removeEventListener('click', handleClickOutside);
+//     };
+//   }, []);
 
-  // Custom date validation function
-  function isValidDate(dateString) {
-    // Check if the date is in YYYY-MM-DD format
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!regex.test(dateString)) {
-      return false;
-    }
+//   // Custom date validation function
+//   function isValidDate(dateString) {
+//     // Check if the date is in YYYY-MM-DD format
+//     const regex = /^\d{4}-\d{2}-\d{2}$/;
+//     if (!regex.test(dateString)) {
+//       return false;
+//     }
 
-    const date = new Date(dateString);
-    const today = new Date();
+//     const date = new Date(dateString);
+//     const today = new Date();
 
-    // Check if the date is a valid date
-    if (isNaN(date.getTime())) {
-      return false;
-    }
+//     // Check if the date is a valid date
+//     if (isNaN(date.getTime())) {
+//       return false;
+//     }
 
-    // Check if the date is not in the future
-    if (date > today) {
-      return false;
-    }
+//     // Check if the date is not in the future
+//     if (date > today) {
+//       return false;
+//     }
 
-    // Additional check to make sure the date matches the format
-    const [year, month, day] = dateString.split('-').map(Number);
-    return (
-      date.getFullYear() === year &&
-      date.getMonth() + 1 === month &&
-      date.getDate() === day
-    );
-  }
+//     // Additional check to make sure the date matches the format
+//     const [year, month, day] = dateString.split('-').map(Number);
+//     return (
+//       date.getFullYear() === year &&
+//       date.getMonth() + 1 === month &&
+//       date.getDate() === day
+//     );
+//   }
 
-  return (
-    <div className="modal">
-      <div className="modal-content slide-up-animation">
-        <h2>Fill Details</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username:
-            <input
-              type="text"
-              name="username"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <label>
-            Email Address:
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <label>
-            Phone Number:
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              pattern="[0-9]{10}"
-            />
-          </label>
-          <label>
-            Date of Birth:
-            <input
-              type="date"
-              name="dob"
-              id="dob"
-              value={dob}
-              onChange={(e) => setDob(e.target.value)}
-            />
-          </label>
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
+//   return (
+//     <div className="modal">
+//       <div className="modal-content slide-up-animation">
+//         <h2>Fill Details</h2>
+//         <form onSubmit={handleSubmit}>
+//           <label>
+//             Username:
+//             <input
+//               type="text"
+//               name="username"
+//               id="username"
+//               value={username}
+//               onChange={(e) => setUsername(e.target.value)}
+//             />
+//           </label>
+//           <label>
+//             Email Address:
+//             <input
+//               type="email"
+//               name="email"
+//               id="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             />
+//           </label>
+//           <label>
+//             Phone Number:
+//             <input
+//               type="tel"
+//               name="phone"
+//               id="phone"
+//               value={phone}
+//               onChange={(e) => setPhone(e.target.value)}
+//               pattern="[0-9]{10}"
+//             />
+//           </label>
+//           <label>
+//             Date of Birth:
+//             <input
+//               type="date"
+//               name="dob"
+//               id="dob"
+//               value={dob}
+//               onChange={(e) => setDob(e.target.value)}
+//             />
+//           </label>
+//           <button type="submit" className="submit-button">
+//             Submit
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
 
-export default Modal;
+// export default Modal;
