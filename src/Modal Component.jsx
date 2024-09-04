@@ -56,7 +56,11 @@ function Modal({ toggleModal }) {
   // Custom date validation function
   function isValidDate(dateString) {
     const date = new Date(dateString);
-    return !isNaN(date.getTime()) && date.getFullYear() <= new Date().getFullYear();
+    return (
+      !isNaN(date.getTime()) &&
+      date.getFullYear() <= new Date().getFullYear() &&
+      /^\d{4}-\d{2}-\d{2}$/.test(dateString)
+    );
   }
 
   return (
