@@ -88,3 +88,7 @@ input[type="date"] {
 .submit-button:hover {
   background-color: #0056b3; 
 }
+
+.submit-button{
+  width: 100%;
+}
