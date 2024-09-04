@@ -23,12 +23,12 @@ function Modal({ toggleModal }) {
     }
 
     if (phone.length !== 10 || isNaN(phone)) {
-      alert('Invalid phone number. Please enter a 10-digit phone number.');
+      alert('Invalid phone number'); // Updated message
       return;
     }
 
-    if (new Date(dob) > new Date()) {
-      alert('Invalid date of birth. Date of birth cannot be in the future.');
+    if (!dob || new Date(dob) > new Date()) {
+      alert('Invalid date of birth'); // Updated message
       return;
     }
 
