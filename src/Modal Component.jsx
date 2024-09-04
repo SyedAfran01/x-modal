@@ -10,7 +10,7 @@ function Modal({ toggleModal }) {
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     // Validation checks
     if (!username) {
       alert('Please fill out the Username field.');
@@ -18,17 +18,17 @@ function Modal({ toggleModal }) {
     }
 
     if (!email.includes('@')) {
-      alert('Invalid email. Please check your email address.');
+      alert('Invalid email');
       return;
     }
 
     if (phone.length !== 10 || isNaN(phone)) {
-      alert('Invalid phone number'); // Updated message
+      alert('Invalid phone number');
       return;
     }
 
     if (!dob || new Date(dob) > new Date()) {
-      alert('Invalid date of birth'); // Updated message
+      alert('Invalid date of birth');
       return;
     }
 
