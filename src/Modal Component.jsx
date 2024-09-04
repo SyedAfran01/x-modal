@@ -17,7 +17,7 @@ function Modal({ toggleModal }) {
       return;
     }
 
-    if (!email.includes('@')) {
+    if (!email.includes('@') || !email.includes('.') || email.length < 5) {
       alert('Invalid email');
       return;
     }
@@ -28,7 +28,8 @@ function Modal({ toggleModal }) {
       return;
     }
 
-    if (!dob || new Date(dob) > new Date()) {
+    // Date of birth validation: Ensure it is not a future date and is not empty
+    if (!dob || !isValidDate(dob)) {
       alert('Invalid date of birth');
       return;
     }
@@ -39,7 +40,7 @@ function Modal({ toggleModal }) {
 
   // Function to close the modal if clicked outside
   const handleClickOutside = (event) => {
-    if (event.target.className === 'modal') {
+    if (event.target.className.includes('modal')) {
       toggleModal();
     }
   };
@@ -51,6 +52,12 @@ function Modal({ toggleModal }) {
       window.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  // Custom date validation function
+  function isValidDate(dateString) {
+    const date = new Date(dateString);
+    return !isNaN(date.getTime()) && date.getFullYear() <= new Date().getFullYear();
+  }
 
   return (
     <div className="modal">
@@ -85,6 +92,7 @@ function Modal({ toggleModal }) {
               id="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              pattern="[0-9]{10}"
             />
           </label>
           <label>
