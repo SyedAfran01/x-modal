@@ -22,7 +22,8 @@ function Modal({ toggleModal }) {
       return;
     }
 
-    if (phone.length !== 10 || isNaN(phone)) {
+    // Phone number validation: Ensure it contains only digits and is exactly 10 characters long
+    if (!/^\d{10}$/.test(phone)) {
       alert('Invalid phone number');
       return;
     }
