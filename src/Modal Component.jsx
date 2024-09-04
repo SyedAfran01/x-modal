@@ -55,11 +55,31 @@ function Modal({ toggleModal }) {
 
   // Custom date validation function
   function isValidDate(dateString) {
+    // Check if the date is in YYYY-MM-DD format
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(dateString)) {
+      return false;
+    }
+
     const date = new Date(dateString);
+    const today = new Date();
+
+    // Check if the date is a valid date
+    if (isNaN(date.getTime())) {
+      return false;
+    }
+
+    // Check if the date is not in the future
+    if (date > today) {
+      return false;
+    }
+
+    // Additional check to make sure the date matches the format
+    const [year, month, day] = dateString.split('-').map(Number);
     return (
-      !isNaN(date.getTime()) &&
-      date.getFullYear() <= new Date().getFullYear() &&
-      /^\d{4}-\d{2}-\d{2}$/.test(dateString)
+      date.getFullYear() === year &&
+      date.getMonth() + 1 === month &&
+      date.getDate() === day
     );
   }
 
